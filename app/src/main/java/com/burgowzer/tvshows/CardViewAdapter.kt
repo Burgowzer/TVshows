@@ -20,7 +20,9 @@ class CardViewAdapter: RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
 
-        holder.ViewFiller(TODO())
+        //val show:ShowInfo = ShowInfo("shakira")
+
+        //holder.ViewFiller(show)
 
     }
 
@@ -35,6 +37,7 @@ class CardViewAdapter: RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
 
         fun ViewFiller(show: ShowInfo){
 
+            //for (showIndex in 0 until _list.lenght)
             show.showTitle = showTitleDB.toString()
             show.showDescription = showDescriptionDB.toString()
         }
