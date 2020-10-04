@@ -10,6 +10,8 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import io.realm.Realm
+import io.realm.RealmObject
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -17,12 +19,14 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
 
     lateinit var requestQueue:RequestQueue
+    lateinit var _realm:Realm
     val url:String = "http://jsonplaceholder.typicode.com/todos"
     lateinit var _list: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        _realm = Realm.getDefaultInstance()
 
         recyclerView.adapter = CardViewAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -44,7 +48,10 @@ class MainActivity : AppCompatActivity() {
             for (taskIndex in 0 until ObjectList.length()){
                 val singleObject = ObjectList.getJSONObject(taskIndex)
                 _titleList.add(singleObject.getString("title"))
-                _list = _titleList
+                var stringBuilder = StringBuilder()
+                stringBuilder.append(_titleList[taskIndex])
+                textView.text=stringBuilder
+
             }
         },
             { Toast.makeText(this,"ERROR",Toast.LENGTH_SHORT) })
@@ -55,7 +62,6 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this,CardViewAdapter::class.java)
         intent.putExtra("list",_list)
-        textView.text = _list.toString()
 
 
 

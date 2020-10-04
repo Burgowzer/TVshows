@@ -20,7 +20,6 @@ class CardViewAdapter: RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
 
-        //val show:ShowInfo = ShowInfo("shakira")
 
         //holder.ViewFiller(show)
 
@@ -33,13 +32,10 @@ class CardViewAdapter: RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
     class CardViewHolder(rootView: View): RecyclerView.ViewHolder(rootView){
 
         private val showTitleDB = rootView.showTitle
-        private val showDescriptionDB = rootView.showDescription
 
         fun ViewFiller(show: ShowInfo){
 
-            //for (showIndex in 0 until _list.lenght)
             show.showTitle = showTitleDB.toString()
-            show.showDescription = showDescriptionDB.toString()
         }
 
 
